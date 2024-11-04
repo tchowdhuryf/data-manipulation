@@ -43,3 +43,35 @@ const dontDoThis = ((n1 + n2 + n3 + n4) == 50) &&
   ((n1 % 2) + (n2 % 2) + (n3 % 2) + (n4 % 2) >= 2) && 
   !(n1 > 25 || n2 > 25 || n3 > 25 || n4 > 25) && 
   (n1 != n2 && n1 != n3 && n1 != n4 && n2 != n3 && n2 != n4 && n3 != n4);
+
+
+//practical math - cross country road trip
+const totalDistance = 1500; //total distance to travel for the trip
+const fuelBudget = 175; //fuel budget to spend
+const fuelCost = 3; //average fuel cost per gallon
+
+// fuel used at different speeds e.g. at 55mph fuel consumed is 30mpg
+const fuelUsage = [
+    [55, 30],
+    [60, 28],
+    [75, 23],
+];
+
+//accessing each array variable speed and mpg and calculating with them
+fuelUsage.forEach(([speed, mpg]) => {
+    const gallonsNeeded = totalDistance / mpg;      //gallons of fuel need for each speed
+    const fuelExpense = gallonsNeeded * fuelCost;   //total cost of fuel for the trip at each speed
+    const time = totalDistance / speed;             //total time need for trip at each speed
+    const withinBudget = fuelExpense <= fuelBudget; //checking if we can afford to speed
+    
+    //toFixed limits the number to two decimal places
+    const result = `
+      Traveling at ${speed} mph:
+      - Gallons needed: ${gallonsNeeded.toFixed(2)} gallons
+      - Fuel expense: $${fuelExpense.toFixed(2)}
+      - Trip Time: ${time.toFixed(2)} hours
+      - Within Budget: ${withinBudget ? 'Yes' : 'No'}
+    `;
+  
+    console.log(result);
+});
